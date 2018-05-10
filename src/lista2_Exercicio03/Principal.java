@@ -6,7 +6,7 @@ public class Principal {
 		
 		Lanchonete l = new Lanchonete();
 		
-		l.pedido();
-	}
+		l.ProgramaLanchonete();
+	}	
 
 }

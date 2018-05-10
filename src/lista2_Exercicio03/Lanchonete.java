@@ -7,6 +7,8 @@ public class Lanchonete {
 	//Atribuições
 	int pedido;
 	double valorPedido = 0;
+	double valorPagamento = 0;
+	double trocoPedido = 0;
 	
 	
 	
@@ -40,7 +42,83 @@ public class Lanchonete {
 		
 		if(pedido == 1) {
 			valorPedido+= 5.00;
+		}else if(pedido == 2) {
+			valorPedido+= 4.50;
+		}else if(pedido == 3) {
+			valorPedido+= 8.00;
+		}else if(pedido == 4) {
+			valorPedido+= 12;
+		}else if(pedido == 5) {
+			valorPedido+= 16.50;
+		}else if(pedido == 6) {
+			valorPedido+= 1.00;
+		}else if(pedido == 7) {
+			valorPedido+= 2.50;
 		}
 		
+	}
+	
+	//Método - Nota fiscal (Este método esta inserido na validação de valor)
+	public String notaFiscal() {
+		
+		//Estrutura - Nota Fiscal
+		String notafiscal = "**** Dados do seu pedido ****";
+			   notafiscal+= "\n\nO seu pedido custou: R$"+valorPedido;
+			   notafiscal+= "\nDigite o valor do pagamento";
+			   
+		return notafiscal;
+		
+	}
+	
+	//Método - Validação de valor
+	public void validaValor() {
+		
+		//Variaveis
+		boolean erroValor = false;
+	
+		do {
+			erroValor = false;
+		
+		valorPagamento = Double.parseDouble(JOptionPane.showInputDialog(notaFiscal()));
+		
+		if(valorPagamento < valorPedido) {
+			JOptionPane.showMessageDialog(null, "O valor a pagar é menor que o valor do pedido");
+			erroValor = true;
+		}
+		
+		}while(erroValor == true);
+	}
+	
+	//Método - Troco do cliente
+	public void trocoCliente() {
+		
+		trocoPedido = valorPagamento - valorPedido;
+		
+		JOptionPane.showMessageDialog(null,"O seu troco é de R$: "+trocoPedido);
+	}
+	
+	//Método - Laço e Programa
+	public void ProgramaLanchonete() {
+		
+		//Variaveis
+		int continuarPedido;
+		boolean novoPedido = false;
+		
+		do {
+			 novoPedido = false;
+			 
+				pedido();
+				somaPedido();
+				
+			continuarPedido = JOptionPane.showConfirmDialog(null, "Deseja fazer mais algum pedido?","",0);
+				if(continuarPedido == 0) {
+					novoPedido = true;
+				}
+				
+		}while(novoPedido == true);
+		
+				notaFiscal();
+				validaValor();
+				trocoCliente();
 	}
 }
