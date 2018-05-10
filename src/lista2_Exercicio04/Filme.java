@@ -5,14 +5,14 @@ import javax.swing.JOptionPane;
 public class Filme {
 	
 	//Atributos
-	int participantes = 0, excelente = 0, otimo = 0, bom = 0, regular = 0, ruim = 0;
+	int participantes = 1, excelente = 0, otimo = 0, bom = 0, regular = 0, ruim = 0;
 	int avaliar = 0;
+	int idade = 0, crianca = 0, adolescente = 0, adulto = 0;
 
 	//Método - Solicitar idade e Validar
-	public Integer idadeParticipante() {
+	public void idadeParticipante() {
 		
 		//Variaveis
-		int idade = 0;
 		boolean erroIdade = false;
 		
 		//Idade (Pergunta e Validação)
@@ -39,10 +39,20 @@ public class Filme {
 				
 		}while(erroIdade == true);
 		
-		return idade;
+
 	}
 	
 	//Método - Contador de idade
+	public void contadorIdade() {
+		
+		if(idade > 0 && idade < 10) {
+			crianca++;
+		}else if(idade < 18) {
+			adolescente++;
+		}else if(idade >= 18) {
+			adulto++;
+		}
+	}
 	
 	//Método - Menu de avaliação
 	public String menuAvaliacao() {
@@ -105,5 +115,52 @@ public class Filme {
 			ruim++;
 		}
 		
+	}
+	
+	//Método - Mensagem do resultado
+	public String mensagemResultado() {
+		
+		String msgResultado = "**** Resultado da avaliacao";
+			   msgResultado+="\n - Percentual de votos";
+			   msgResultado+="\n   Excelente: "+excelente+" votos - Percentual: "+(excelente / participantes) * 100+"%";
+			   msgResultado+="\n   Excelente: "+otimo+" votos - Percentual: "+(otimo / participantes) * 100+"%";
+			   msgResultado+="\n   Excelente: "+bom+" votos - Percentual: "+(bom / participantes) * 100+"%";
+			   msgResultado+="\n   Excelente: "+regular+" votos - Percentual: "+(regular / participantes) * 100+"%";
+			   msgResultado+="\n   Excelente: "+ruim+" votos - Percentual: "+(ruim / participantes) * 100+"%";
+			   msgResultado+="\n\n - Quantidade por faixa etaria";
+			   msgResultado+="\n   Criança: "+crianca+" crianças";
+			   msgResultado+="\n   Adolescente: "+adolescente+" adolescentes";
+			   msgResultado+="\n   Adulto: "+adulto+" adultos";
+			   
+			   JOptionPane.showMessageDialog(null, msgResultado);
+			   
+			   return msgResultado;
+	}
+	
+	//Método - Laço e Programa
+	public void ProgramaAvaliacao() {
+		
+		//Variaveis
+		int continuarAvaliacao;
+		boolean sairAvaliacao = true;
+		
+		do {
+			sairAvaliacao = true;
+				
+				idadeParticipante();
+				contadorIdade();
+				avaliarFilme();
+				contadorAvaliacao();
+				
+			continuarAvaliacao = JOptionPane.showConfirmDialog(null, "Mais alguem deseja avaliar?","",0);
+			
+				if(continuarAvaliacao == 0) {
+					sairAvaliacao = false;
+					
+				}
+		}while(sairAvaliacao == false);
+		
+		//Mostrando a mensagem
+		mensagemResultado();
 	}
 }
