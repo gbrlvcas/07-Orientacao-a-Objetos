@@ -51,6 +51,7 @@ public class Papelaria {
 			for(int tabela = 1 ; tabela < 10 ; tabela++) {
 		       mensagem+="\n";
 		       mensagem+= (tabela+1)+" x R$"+valorProduto -(valorProduto * (tabela * 0.05))+" = R$"+(valorProduto * (tabela * 0.05)) * tabela;
+		       
 			}
 	}
 }	
