@@ -1,5 +1,6 @@
 package lista2_Exercicio05;
 
+
 import javax.swing.JOptionPane;
 
 public class Papelaria {
@@ -35,9 +36,6 @@ public class Papelaria {
 	//Método - Valor do produto
 	public void produtoValor() {
 		
-		//Variaveis
-		boolean erroValor = false;
-		
 		//Solicitando o valor do produto
 		
 			valorProduto = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor do produto"));
@@ -45,14 +43,34 @@ public class Papelaria {
 	}
 	
 	//Método - Mensagem e resultado
-	public String mensagemResultado() {
+	public void mensagemResultado() {
 		
 		String mensagem = "**** Tabela de descontos ****";
-			for(int tabela = 1 ; tabela < 10 ; tabela++) {
+			for(int tabela = 1 ; tabela < 11 ; tabela++) {
 		       mensagem+="\n";
-		       mensagem+= (tabela+1)+" x R$"+valorProduto -(valorProduto * (tabela * 0.05))+" = R$"+(valorProduto * (tabela * 0.05)) * tabela;
+		       mensagem+= tabela+" x R$"+(valorProduto - (valorProduto * (tabela * 0.05)))+" = R$"+(valorProduto - (valorProduto * (tabela * 0.05))) * tabela;
 		       
 			}
+			
+			//Mostrando mensagem
+			JOptionPane.showMessageDialog(null, mensagem);
 	}
-}	
-
+	
+	//Método - Laço e Programa
+	public void ProgramaPapelaria(){
+		//Variaveis
+		int continuar = 0;
+		
+	do{
+		produtoNome();
+		produtoValor();
+		mensagemResultado();
+		
+		//Peguntando se cliente quer calcular outro produto
+		continuar = JOptionPane.showConfirmDialog(null, "Deseja ver outros descontos?","",0);
+				
+	}while(continuar == 0);
+	
+	
+	}
+}
