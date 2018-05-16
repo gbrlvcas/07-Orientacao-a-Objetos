@@ -6,7 +6,7 @@ public class Principal {
 
 	Avaliacao a = new Avaliacao();
 	
-	a.perguntas();	
+	a.ProgramaAvaliacao();
 		
 	
 

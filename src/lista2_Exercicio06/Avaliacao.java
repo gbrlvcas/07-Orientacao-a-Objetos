@@ -163,7 +163,7 @@ public class Avaliacao {
 	//Método - Calculo da média
 	public double mediaAluno() {
 		
-		media = ((nota1 + nota2 + nota3 + nota4) / 4);
+		media = (nota1 + nota2 + nota3 + nota4) / 4;
 		
 		return media;
 	}
@@ -201,7 +201,7 @@ public class Avaliacao {
 		//Mensagem
 		resultadoAluno = "**** Avaliação da média ****";
 		resultadoAluno+= "\n\nOlá, "+nome;
-		resultadoAluno+= "\nA sua média é: "+media;
+		resultadoAluno+= "\nA sua média é: "+mediaAluno();
 		resultadoAluno+= "\n A sua situação é: "+situacao;
 		
 		//Mostrando a mensagem
@@ -226,6 +226,31 @@ public class Avaliacao {
 		resultadoGeral+= "\nMedia 7: "+satisfatorio+" alunos - "+(satisfatorio / contaAlunos) * 100+"%";
 		resultadoGeral+= "\nMedia entre 6 e 5: "+recuperacao+" alunos - "+(recuperacao / contaAlunos) * 100+"%";
 		resultadoGeral+= "\nMedia abaixo de 5: "+reprovado+" alunos - "+(reprovado / contaAlunos) * 100+"%";
+	}
+	
+	//Método - Laço e Programa
+	public void ProgramaAvaliacao() {
+		
+		//Variaveis
+		int continuarAvaliacao;
+		boolean sairAvaliacao = true;
+		
+		do {
+			sairAvaliacao = true;
+			
+		perguntas();
+		contadorSexo();
+		contadorSituacao();
+		situacaoAluno();
+		
+		continuarAvaliacao = JOptionPane.showConfirmDialog(null, "Deseja cadastrar outro Aluno?","",0);
+			if(continuarAvaliacao == 0){
+				sairAvaliacao = false;
+			}
+			
+		}while(sairAvaliacao == false);
+		
+		situacaoGeral();
 	}
 }	
 	
